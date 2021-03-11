@@ -8,6 +8,17 @@
     </head>
     <body>
         <h1>Le blog de Jean-Phi</h1>
+        @guest
+        <a href="{{ route('login') }}">Se connecter</a>
+        @endguest
+        @auth
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit">
+                {{ __('Se déconnecter') }}
+            </button>
+        </form>
+        @endauth
         <header>
         </header>
         @yield('content')

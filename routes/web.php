@@ -16,4 +16,8 @@ use App\Http\Controllers\VideoController;
 
 Route::resource('/', VideoController::class)->only('index');
 
-Route::resource('videos', VideoController::class)->except('index');
+Route::resource('videos', VideoController::class)->except('index')->middleware('auth');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
